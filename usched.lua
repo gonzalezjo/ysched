@@ -9,7 +9,7 @@ local target
 if arg[1] then
     target = assert(loadfile(arg[1]))
 elseif debug then
-    target = debug.getinfo(3,'f').func -- cheeky hack for require support
+    target = debug.getinfo(3,'f').func -- cheeky hack to support require
 else
     print "[SCHEDULER] Error: Either no arguments, or you're requiring this without the debug library."
     error "[SCHEDULER] See error message."
@@ -59,14 +59,14 @@ local function startscheduler()
     repeat
         local step = queue:pop()
         if step then
-            if (not step.condition) or step.condition() then
+            if not step.condition or step.condition() then
                 coroutine.resume(step.coroutine, step.args)
             else
                 queue:push(step, true)
             end
         end
-    until #queue == 0
-    local debug  = nil -- remove stacktrace from error in vanilla lua 
+    until #queue    == 0
+    debug.traceback = nil -- remove stacktrace from error in vanilla lua 
     error "Execution complete." -- prevent script from running again when required. (side effect of require hack)
 end
 
