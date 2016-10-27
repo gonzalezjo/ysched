@@ -42,19 +42,21 @@
 <h6>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h6>
 
-<p>There are two ways of using ysched. You can directly launch scripts using it, or you can just require it from your script. 
-<strong>Direct Launch</strong>
-<code>luajit ysched.lua TARGETFILE.lua</code></p>
+<p>There are two ways of using ysched. You can directly launch scripts using it, or you can just require it from your script. </p>
+
+<p><strong>Direct Launch</strong></p>
+
+<p>Use lua (or luajit) in the commandline with the first argument being ysched.lua and the second being the script you want it to manage. As an example, you can load <code>TARGETFILE.lua</code> in the scheduler with: <code>luajit ysched.lua TARGETFILE.lua</code></p>
 
 <p><strong>Requiring</strong>
-Put ysched in the same folder as your script, and then add </p>
+Put ysched in the same folder as your script, and then add: </p>
 
 <div class="highlight highlight-source-lua"><pre><span class="pl-c1">require</span> <span class="pl-s"><span class="pl-pds">"</span>ysched<span class="pl-pds">"</span></span></pre></div>
 
 <p>to the top of your script. </p>
 
 <h6>
-<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h6>
+<a id="code-examples" class="anchor" href="#code-examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Code Examples</h6>
 
 <p><strong>Input:</strong></p>
 
