@@ -7,20 +7,27 @@
 
 **Docs**
 
-###### `wait(float seconds)` 
-
-Calls custom yield function with a check. Resumes execution after the amount of seconds that has been passed.
-
 ###### `yield(function condition, (optional) function callback, (optional) callback arguments)`
 
 If only a condition is passed, resume execution after condition is met. If a function callback is provided, call that function after with the arguments specified by the optional callback arguments list. Additional callback arguments can be provided by passing additional arguments to yield. 
+
+
+###### `wait(float seconds)` 
+
+Calls the custom yield function with a function that waits for the amount of seconds provided. Uses os.clock() as a time source. Resumes execution after the amount of seconds that has been passed.
 
 ###### `spawn(function createasync)`
 
 Create a function and add it to the scheduler thread, so it runs "asynchronously". 
 
 
+
+***
+
+
+
 **Usage**
+
 There are two ways of using ysched. You can directly launch scripts using it, or you can just require it from your script. 
 
 
@@ -34,6 +41,11 @@ Put ysched in the same folder as your script, and then add:
 require "ysched"
 ```
 to the top of your script. 
+
+
+***
+
+
 
 **Code Examples**
 
