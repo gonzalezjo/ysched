@@ -13,6 +13,7 @@ Example:
 
 Input:
 ```lua
+require "usched"
 print "Start"
 
 local variable = 5
