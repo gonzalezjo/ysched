@@ -34,9 +34,6 @@ print("Line 17: " .. os.clock())
 
 Output:
 ```
-)
-
-```
 Start
 Line 5: 0
 Line 13: 0
