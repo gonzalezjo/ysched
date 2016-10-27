@@ -1,6 +1,10 @@
-# usched
+# ysched
 ### Easily control script execution.
 ##### An easy, advanced, coroutine based Lua scheduler. 
+
+
+***
+
 
 ###### Docs: 
 
@@ -12,17 +16,17 @@
 
 
 ###### Usage
-There are two ways of using usched. You can directly launch scripts using it, or you can just require it from your script. 
+There are two ways of using ysched. You can directly launch scripts using it, or you can just require it from your script. 
 
 
 **Direct Launch**
 
-Use lua (or luajit) in the commandline with the first argument being usched.lua and the second being the script you want it to manage. For example: `luajit usched.lua TARGETFILE.lua`
+Use lua (or luajit) in the commandline with the first argument being ysched.lua and the second being the script you want it to manage. As an example, you can load `TARGETFILE.lua` in the scheduler with: `luajit ysched.lua TARGETFILE.lua`
 
 **Requiring**
-Put usched in the same folder as your script, and then add: 
+Put ysched in the same folder as your script, and then add: 
 ```lua
-require "usched"
+require "ysched"
 ```
 to the top of your script. 
 
@@ -30,7 +34,7 @@ to the top of your script.
 
 **Input:**
 ```lua
-require "scheduler\\usched"
+require "scheduler\\ysched"
 print "Start"
 
 local variable = 5
@@ -38,9 +42,9 @@ local variable = 5
 print("Line 5: " .. os.clock())
 
 spawn(function()
-	print("Line 8: " .. os.clock())
-	yield(function() return variable == 10 end, print, "'variable' is " .. variable)
-	print("Line 10: " .. os.clock())
+    print("Line 8: " .. os.clock())
+    yield(function() return variable == 10 end, print, "'variable' is " .. variable)
+    print("Line 10: " .. os.clock())
 end)
 
 print("Line 13: " .. os.clock())
@@ -59,5 +63,5 @@ Line 8: 0
 Line 15: 3
 Line 17: 3
 Line 10: 3.001
-lua: scheduler\usched.lua:70: Execution complete.
+lua: scheduler\ysched.lua:70: Execution complete.
 ```
