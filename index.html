@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Usched by gonzalez-j</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Usched</h1>
+        <p class="header">Somewhat small coroutine scheduler in Lua with support for neat yielding features.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/gonzalez-j/usched/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/gonzalez-j/usched/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/gonzalez-j/usched">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/gonzalez-j">gonzalez-j</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a id="usched" class="anchor" href="#usched" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>usched</h1>
+
+<h3>
+<a id="easily-control-script-execution" class="anchor" href="#easily-control-script-execution" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Easily control script execution.</h3>
+
+<h5>
+<a id="an-easy-advanced-coroutine-based-lua-scheduler" class="anchor" href="#an-easy-advanced-coroutine-based-lua-scheduler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>An easy, advanced, coroutine based Lua scheduler.</h5>
+
+<h6>
+<a id="docs" class="anchor" href="#docs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Docs:</h6>
+
+<p><code>wait(float seconds)</code> - Calls custom yield function with a check. Resumes execution after the amount of seconds that has been passed.</p>
+
+<p><code>yield(function condition, (optional) function callback, (optional) callback arguments)</code> - If only a condition is passed, resume execution after condition is met. If a function callback is provided, call that function after with the arguments specified by the optional callback arguments list. Additional callback arguments can be provided by passing additional arguments to yield. </p>
+
+<p><code>spawn(function createasync)</code> - Create a function and add it to the scheduler thread, so it runs "asynchronously". </p>
+
+<h6>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h6>
+
+<p>There are two ways of using usched. You can directly launch scripts using it, or you can just require it from your script. 
+<strong>Direct Launch</strong>
+<code>luajit usched.lua TARGETFILE.lua</code></p>
+
+<p><strong>Requiring</strong>
+Put usched in the same folder as your script, and then add </p>
+
+<div class="highlight highlight-source-lua"><pre><span class="pl-c1">require</span> <span class="pl-s"><span class="pl-pds">"</span>usched<span class="pl-pds">"</span></span></pre></div>
+
+<p>to the top of your script. </p>
+
+<h6>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h6>
+
+<p><strong>Input:</strong></p>
+
+<div class="highlight highlight-source-lua"><pre><span class="pl-c1">require</span> <span class="pl-s"><span class="pl-pds">"</span>scheduler<span class="pl-cce">\\</span>usched<span class="pl-pds">"</span></span>
+<span class="pl-c1">print</span> <span class="pl-s"><span class="pl-pds">"</span>Start<span class="pl-pds">"</span></span>
+
+<span class="pl-k">local</span> variable <span class="pl-k">=</span> <span class="pl-c1">5</span>
+
+<span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Line 5: <span class="pl-pds">"</span></span> <span class="pl-k">..</span> <span class="pl-c1">os.clock</span>())
+
+<span class="pl-c1">spawn</span>(<span class="pl-k">function</span>()
+    <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Line 8: <span class="pl-pds">"</span></span> <span class="pl-k">..</span> <span class="pl-c1">os.clock</span>())
+    <span class="pl-c1">yield</span>(<span class="pl-k">function</span>() <span class="pl-k">return</span> variable <span class="pl-k">==</span> <span class="pl-c1">10</span> <span class="pl-k">end</span>, print, <span class="pl-s"><span class="pl-pds">"</span>'variable' is <span class="pl-pds">"</span></span> <span class="pl-k">..</span> variable)
+    <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Line 10: <span class="pl-pds">"</span></span> <span class="pl-k">..</span> <span class="pl-c1">os.clock</span>())
+<span class="pl-k">end</span>)
+
+<span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Line 13: <span class="pl-pds">"</span></span> <span class="pl-k">..</span> <span class="pl-c1">os.clock</span>())
+<span class="pl-c1">wait</span>(<span class="pl-c1">3</span>)
+<span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Line 15: <span class="pl-pds">"</span></span> <span class="pl-k">..</span> <span class="pl-c1">os.clock</span>())
+variable <span class="pl-k">=</span> <span class="pl-c1">10</span>
+<span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Line 17: <span class="pl-pds">"</span></span> <span class="pl-k">..</span> <span class="pl-c1">os.clock</span>())</pre></div>
+
+<p><strong>Output:</strong></p>
+
+<pre><code>Start
+Line 5: 0
+Line 13: 0
+Line 8: 0
+Line 15: 3
+Line 17: 3
+Line 10: 3.001
+lua: scheduler\usched.lua:70: Execution complete.
+</code></pre>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
