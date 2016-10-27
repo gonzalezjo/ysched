@@ -13,17 +13,20 @@
 
 ###### Usage
 There are two ways of using usched. You can directly launch scripts using it, or you can just require it from your script. 
+
+
 **Direct Launch**
-`luajit usched.lua TARGETFILE.lua`
+
+Use lua (or luajit) in the commandline with the first argument being usched.lua and the second being the script you want it to manage. For example: `luajit usched.lua TARGETFILE.lua`
 
 **Requiring**
-Put usched in the same folder as your script, and then add 
+Put usched in the same folder as your script, and then add: 
 ```lua
 require "usched"
 ```
 to the top of your script. 
 
-###### Examples
+###### Code Examples
 
 **Input:**
 ```lua
