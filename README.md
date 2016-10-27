@@ -13,7 +13,7 @@ Example:
 
 Input:
 ```lua
-require "usched"
+require "scheduler\\usched"
 print "Start"
 
 local variable = 5
