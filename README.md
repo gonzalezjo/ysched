@@ -1,6 +1,6 @@
 # ysched
-##### An easy, advanced, coroutine based Lua scheduler. 
-
+#### An easy and advanced coroutine based Lua scheduler. 
+##### With an advanced and intuitive "yield" feature and support for require.
 
 ***
 
