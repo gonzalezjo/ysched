@@ -5,7 +5,9 @@
 API: 
 
 `wait(float seconds)` - Calls custom yield function with a check. Resumes execution after the amount of seconds that has been passed.
+
 `yield(function condition, (optional) function callback, (optional) callback arguments)` - If only a condition is passed, resume execution after condition is met. If a function callback is provided, call that function after with the arguments specified by the optional callback arguments list. Additional callback arguments can be provided by passing additional arguments to yield. 
+
 `spawn(function createasync)` - Create a function and add it to the scheduler thread, so it runs "asynchronously". 
 
 
