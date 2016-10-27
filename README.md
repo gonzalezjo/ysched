@@ -1,5 +1,4 @@
 # ysched
-### Easily control script execution.
 ##### An easy, advanced, coroutine based Lua scheduler. 
 
 
