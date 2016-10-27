@@ -1,3 +1,4 @@
+-- import hack
 local oldrequire = require
 require = function(argname)
     if not getfenv().wait or not argname:match("ysched") then
@@ -5,6 +6,7 @@ require = function(argname)
     end
 end
 
+-- finds function to schedule
 local target
 if arg[1] then
     target = assert(loadfile(arg[1]))
@@ -15,6 +17,8 @@ else
     error "[SCHEDULER] See error message."
 end
 
+
+-- queue code 
 local    queue = {}
 function queue:push(task, back)
     if back then
@@ -27,6 +31,7 @@ function queue:pop()
     return table.remove(self, 1)
 end
 
+-- scheduler apis 
 function spawn(_function)
     queue:push {
         ["coroutine"] = coroutine.create(_function),
@@ -34,7 +39,7 @@ function spawn(_function)
     }
 end
 
-function yield(condition, _function, ...)
+function yield(condition, _function, ...) -- ... = args for _function 
     local args       = ...
     local truth      = condition
     local running    = coroutine.running()
@@ -54,6 +59,7 @@ function wait(time)
     return yield(function() return dismissal <= os.clock() end)
 end
 
+--starts scheduling code
 local function startscheduler()
     repeat
         local step = queue:pop()
@@ -69,5 +75,6 @@ local function startscheduler()
     error "[SCHEDULER] Execution complete." -- prevent script from running again when required. (side effect of require hack)
 end
 
-spawn(target) 
-startscheduler()
+-- init
+spawn(target) -- put specified function on scheduler 
+startscheduler() -- starts scheduling
