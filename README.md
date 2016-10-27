@@ -1,6 +1,6 @@
 # usched
-## An easy, advanced, coroutine based Lua scheduler. 
-##### Easily control script execution.
+### Easily control script execution.
+##### An easy, advanced, coroutine based Lua scheduler. 
 
 API: 
 
