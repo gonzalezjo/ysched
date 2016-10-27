@@ -1,4 +1,19 @@
-os.execute("cls")
+local oldrequire = require
+require = function(argname)
+    if not getfenv().wait or not argname:match("usched") then
+        return oldrequire(argname)
+    end
+end
+
+local target
+if arg[1] then
+    target = assert(loadfile(arg[1]))
+elseif debug then
+    target = debug.getinfo(3,'f').func -- cheeky hack for require support
+else
+    print "[SCHEDULER] Error: Either no arguments, or you're requiring this without the debug library."
+    error "[SCHEDULER] See error message."
+end
 
 local    queue = {}
 function queue:push(task, back)
@@ -24,8 +39,8 @@ function yield(condition, _function, ...)
     local truth      = condition
     local running    = coroutine.running()
     local _coroutine = _function and coroutine.create(function() _function() coroutine.resume(running) end) or coroutine.running()
-    -- i really hate that i had to add this, but it adds some really useful stuff
 
+    print(_coroutine)
     queue:push {
         ["coroutine"] = _coroutine,
         ["condition"] = truth,
@@ -40,7 +55,7 @@ function wait(time)
     return yield(function() return dismissal <= os.clock() end)
 end
 
-local function start()
+local function startscheduler()
     repeat
         local step = queue:pop()
         if step then
@@ -51,8 +66,9 @@ local function start()
             end
         end
     until #queue == 0
-    return error "No tasks remaining. Exiting."
+    local debug  = nil -- remove stacktrace 
+	error "Execution complete." -- prevent script from running again when required. (side effect of require hack)
 end
 
--- spawn(loadfile('tests.lua')) -- tests.lua is the file to load
-start()
+spawn(target) 
+startscheduler()
