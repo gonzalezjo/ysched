@@ -1,44 +1,34 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>usched by gonzalez-j</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta charset="UTF-8">
+    <title>ysched by gonzalez-j</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">usched</h1>
-        <p class="header">Somewhat small coroutine scheduler in Lua with support for neat yielding features.</p>
+    <section class="page-header">
+      <h1 class="project-name">ysched</h1>
+      <h2 class="project-tagline">A fast, functional, and featureful coroutine scheduler.</h2>
+      <a href="https://github.com/gonzalez-j/ysched" class="btn">View on GitHub</a>
+      <a href="https://github.com/gonzalez-j/ysched/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/gonzalez-j/ysched/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-        <ul>
-          <li class="download"><a class="buttons" href="https://github.com/gonzalez-j/usched/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/gonzalez-j/usched/tarball/master">Download TAR</a></li>
-	  <li class="download"><a class="buttons" href="https://raw.githubusercontent.com/gonzalez-j/usched/master/usched.lua">Download Lua</a></li>
-          <li><a class="buttons github" href="https://github.com/gonzalez-j/usched">View On GitHub</a></li>
-        </ul>
-
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/gonzalez-j">gonzalez-j</a></p>
-
-
-      </header>
-      <section>
-        <h1>
-<a id="usched" class="anchor" href="#usched" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>usched</h1>
+    <section class="main-content">
+      <h1>
+<a id="ysched" class="anchor" href="#ysched" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ysched</h1>
 
 <h3>
 <a id="easily-control-script-execution" class="anchor" href="#easily-control-script-execution" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Easily control script execution.</h3>
 
 <h5>
 <a id="an-easy-advanced-coroutine-based-lua-scheduler" class="anchor" href="#an-easy-advanced-coroutine-based-lua-scheduler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>An easy, advanced, coroutine based Lua scheduler.</h5>
+
+<hr>
 
 <h6>
 <a id="docs" class="anchor" href="#docs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Docs:</h6>
@@ -52,14 +42,14 @@
 <h6>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h6>
 
-<p>There are two ways of using usched. You can directly launch scripts using it, or you can just require it from your script. 
+<p>There are two ways of using ysched. You can directly launch scripts using it, or you can just require it from your script. 
 <strong>Direct Launch</strong>
-<code>luajit usched.lua TARGETFILE.lua</code></p>
+<code>luajit ysched.lua TARGETFILE.lua</code></p>
 
 <p><strong>Requiring</strong>
-Put usched in the same folder as your script, and then add </p>
+Put ysched in the same folder as your script, and then add </p>
 
-<div class="highlight highlight-source-lua"><pre><span class="pl-c1">require</span> <span class="pl-s"><span class="pl-pds">"</span>usched<span class="pl-pds">"</span></span></pre></div>
+<div class="highlight highlight-source-lua"><pre><span class="pl-c1">require</span> <span class="pl-s"><span class="pl-pds">"</span>ysched<span class="pl-pds">"</span></span></pre></div>
 
 <p>to the top of your script. </p>
 
@@ -68,7 +58,7 @@ Put usched in the same folder as your script, and then add </p>
 
 <p><strong>Input:</strong></p>
 
-<div class="highlight highlight-source-lua"><pre><span class="pl-c1">require</span> <span class="pl-s"><span class="pl-pds">"</span>scheduler<span class="pl-cce">\\</span>usched<span class="pl-pds">"</span></span>
+<div class="highlight highlight-source-lua"><pre><span class="pl-c1">require</span> <span class="pl-s"><span class="pl-pds">"</span>scheduler<span class="pl-cce">\\</span>ysched<span class="pl-pds">"</span></span>
 <span class="pl-c1">print</span> <span class="pl-s"><span class="pl-pds">"</span>Start<span class="pl-pds">"</span></span>
 
 <span class="pl-k">local</span> variable <span class="pl-k">=</span> <span class="pl-c1">5</span>
@@ -96,14 +86,17 @@ Line 8: 0
 Line 15: 3
 Line 17: 3
 Line 10: 3.001
-lua: scheduler\usched.lua:70: Execution complete.
+lua: scheduler\ysched.lua:70: Execution complete.
 </code></pre>
-      </section>
-      <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/gonzalez-j/ysched">ysched</a> is maintained by <a href="https://github.com/gonzalez-j">gonzalez-j</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+
+    </section>
+
+  
   </body>
 </html>
