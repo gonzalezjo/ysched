@@ -66,8 +66,8 @@ local function startscheduler()
             end
         end
     until #queue == 0
-    local debug  = nil -- remove stacktrace 
-	error "Execution complete." -- prevent script from running again when required. (side effect of require hack)
+    local debug  = nil -- remove stacktrace from error in vanilla lua 
+    error "Execution complete." -- prevent script from running again when required. (side effect of require hack)
 end
 
 spawn(target) 
