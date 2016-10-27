@@ -38,9 +38,7 @@ Output:
 Start
 Line 5: 0
 Line 13: 0
-thread: 00A713F8
 Line 8: 0
-thread: 00A701A8
 Line 15: 3
 Line 17: 3
 
