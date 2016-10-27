@@ -1,6 +1,6 @@
 local oldrequire = require
 require = function(argname)
-    if not getfenv().wait or not argname:match("usched") then
+    if not getfenv().wait or not argname:match("ysched") then
         return oldrequire(argname)
     end
 end
@@ -66,7 +66,7 @@ local function startscheduler()
         end
     until #queue    == 0
     debug.traceback = nil -- remove stacktrace from error in vanilla lua 
-    error "Execution complete." -- prevent script from running again when required. (side effect of require hack)
+    error "[SCHEDULER] Execution complete." -- prevent script from running again when required. (side effect of require hack)
 end
 
 spawn(target) 
