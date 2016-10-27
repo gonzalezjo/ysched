@@ -22,43 +22,54 @@
       <h1>
 <a id="ysched" class="anchor" href="#ysched" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ysched</h1>
 
-<h3>
-<a id="easily-control-script-execution" class="anchor" href="#easily-control-script-execution" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Easily control script execution.</h3>
+<hr>
 
-<h5>
-<a id="an-easy-advanced-coroutine-based-lua-scheduler" class="anchor" href="#an-easy-advanced-coroutine-based-lua-scheduler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>An easy, advanced, coroutine based Lua scheduler.</h5>
+<p><strong>Docs</strong></p>
+
+<h6>
+<a id="yieldfunction-condition-optional-function-callback-optional-callback-arguments" class="anchor" href="#yieldfunction-condition-optional-function-callback-optional-callback-arguments" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>yield(function condition, (optional) function callback, (optional) callback arguments)</code>
+</h6>
+
+<p>If only a condition is passed, resume execution after condition is met. If a function callback is provided, call that function after with the arguments specified by the optional callback arguments list. Additional callback arguments can be provided by passing additional arguments to yield. </p>
+
+<h6>
+<a id="waitfloat-seconds" class="anchor" href="#waitfloat-seconds" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>wait(float seconds)</code>
+</h6>
+
+<p>Calls the custom yield function with a function that waits for the amount of seconds provided. Uses os.clock() as a time source. Resumes execution after the amount of seconds that has been passed.</p>
+
+<h6>
+<a id="spawnfunction-createasync" class="anchor" href="#spawnfunction-createasync" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>spawn(function createasync)</code>
+</h6>
+
+<p>Create a function and add it to the scheduler thread, so it runs "asynchronously". </p>
 
 <hr>
 
-<h6>
-<a id="docs" class="anchor" href="#docs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Docs:</h6>
-
-<p><code>wait(float seconds)</code> - Calls custom yield function with a check. Resumes execution after the amount of seconds that has been passed.</p>
-
-<p><code>yield(function condition, (optional) function callback, (optional) callback arguments)</code> - If only a condition is passed, resume execution after condition is met. If a function callback is provided, call that function after with the arguments specified by the optional callback arguments list. Additional callback arguments can be provided by passing additional arguments to yield. </p>
-
-<p><code>spawn(function createasync)</code> - Create a function and add it to the scheduler thread, so it runs "asynchronously". </p>
-
-<h6>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h6>
+<p><strong>Usage</strong></p>
 
 <p>There are two ways of using ysched. You can directly launch scripts using it, or you can just require it from your script. </p>
 
-<p><strong>Direct Launch</strong></p>
+<h6>
+<a id="direct-launch" class="anchor" href="#direct-launch" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Direct Launch</h6>
 
 <p>Use lua (or luajit) in the commandline with the first argument being ysched.lua and the second being the script you want it to manage. As an example, you can load <code>TARGETFILE.lua</code> in the scheduler with: <code>luajit ysched.lua TARGETFILE.lua</code></p>
 
-<p><strong>Requiring</strong>
-Put ysched in the same folder as your script, and then add: </p>
+<h6>
+<a id="requiring" class="anchor" href="#requiring" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requiring</h6>
+
+<p>Put ysched in the same folder as your script, and then add: </p>
 
 <div class="highlight highlight-source-lua"><pre><span class="pl-c1">require</span> <span class="pl-s"><span class="pl-pds">"</span>ysched<span class="pl-pds">"</span></span></pre></div>
 
 <p>to the top of your script. </p>
 
-<h6>
-<a id="code-examples" class="anchor" href="#code-examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Code Examples</h6>
+<hr>
 
-<p><strong>Input:</strong></p>
+<p><strong>Code Examples</strong></p>
+
+<h6>
+<a id="input" class="anchor" href="#input" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Input</h6>
 
 <div class="highlight highlight-source-lua"><pre><span class="pl-c1">require</span> <span class="pl-s"><span class="pl-pds">"</span>scheduler<span class="pl-cce">\\</span>ysched<span class="pl-pds">"</span></span>
 <span class="pl-c1">print</span> <span class="pl-s"><span class="pl-pds">"</span>Start<span class="pl-pds">"</span></span>
@@ -79,7 +90,8 @@ Put ysched in the same folder as your script, and then add: </p>
 variable <span class="pl-k">=</span> <span class="pl-c1">10</span>
 <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Line 17: <span class="pl-pds">"</span></span> <span class="pl-k">..</span> <span class="pl-c1">os.clock</span>())</pre></div>
 
-<p><strong>Output:</strong></p>
+<h6>
+<a id="output" class="anchor" href="#output" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Output</h6>
 
 <pre><code>Start
 Line 5: 0
