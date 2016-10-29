@@ -79,6 +79,7 @@ Line 13: 0
 Line 8: 0
 Line 15: 3
 Line 17: 3
-Line 10: 3.001
+'variable' is 10
+Line 10: 3
 lua: scheduler\ysched.lua:70: Execution complete.
 ```
