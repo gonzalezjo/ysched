@@ -43,7 +43,7 @@ function yield(condition, _function, ...) -- ... = args for _function
     local args       = ...
     local truth      = condition
     local running    = coroutine.running()
-    local _coroutine = _function and coroutine.create(function() _function() coroutine.resume(running) end) or coroutine.running()
+    local _coroutine = _function and coroutine.create(function(...) _function(...) coroutine.resume(running) end) or coroutine.running()
 
     queue:push {
         ["coroutine"] = _coroutine,
