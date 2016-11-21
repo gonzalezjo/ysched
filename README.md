@@ -9,7 +9,7 @@
 
 ###### `yield(function condition, (optional) function callback, (optional) callback arguments)`
 
-If only a condition is passed, resume execution after condition is met. If a function callback is provided, call that function after with the arguments specified by the optional callback arguments list. Additional callback arguments can be provided by passing additional arguments to yield. 
+If only a condition is passed, resume execution after condition is met. If a function callback is provided, call that function after with the arguments specified by the optional callback arguments list. Additional callback arguments can be provided by passing additional arguments to yield. Allows for easy creation of custom yieldfunctions.
 
 
 ###### `wait(float seconds)` 
