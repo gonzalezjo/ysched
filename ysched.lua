@@ -1,4 +1,5 @@
 -- import hack
+
 local oldrequire = require
 require = function(argname)
     if not getfenv().wait or not argname:match("ysched") then
@@ -7,31 +8,34 @@ require = function(argname)
 end
 
 -- finds function to schedule
+
 local target
 if arg[1] then
     target = assert(loadfile(arg[1]))
 elseif debug then
-    target = debug.getinfo(3,'f').func -- cheeky hack to support require
+    target = debug.getinfo(3, "f").func -- cheeky hack to support require
 else
-    print "[SCHEDULER] Error: Either no arguments, or you're requiring this without the debug library."
-    error "[SCHEDULER] See error message."
+    error "[SCHEDULER] Error: Either no arguments, or you're requiring this without the debug library."
 end
 
-
 -- queue code 
+
 local    queue = {}
+
 function queue:push(task, back)
     if back then
-        self[#self+1] = task
+        self[#self + 1] = task
         return
     end
     table.insert(self, 1, task)
 end
+
 function queue:pop()
     return table.remove(self, 1)
 end
 
 -- scheduler apis 
+
 function spawn(_function)
     queue:push {
         ["coroutine"] = coroutine.create(_function),
@@ -60,6 +64,7 @@ function wait(time)
 end
 
 --starts scheduling code
+
 local function startscheduler()
     repeat
         local step = queue:pop()
@@ -76,5 +81,6 @@ local function startscheduler()
 end
 
 -- init
+
 spawn(target) -- put specified function on scheduler 
 startscheduler() -- starts scheduling
