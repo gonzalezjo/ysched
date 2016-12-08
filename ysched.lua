@@ -15,7 +15,7 @@ if arg[1] then
 elseif debug then
     target = debug.getinfo(3, "f").func -- cheeky hack to support require
 else
-    error "[SCHEDULER] Error: Either no arguments, or you're requiring this without the debug library."
+    error "[SCHEDULER] Error: No arguments or being required without debug library."
 end
 
 -- queue code 
