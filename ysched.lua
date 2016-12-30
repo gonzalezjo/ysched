@@ -44,7 +44,7 @@ function spawn(_function)
 end
 
 function yield(condition, _function, ...) -- ... = args for _function 
-    local args       = ...
+    local args       = {...}
     local truth      = condition
     local running    = coroutine.running()
     local _coroutine = _function and coroutine.create(function(...) _function(...) coroutine.resume(running) end) or coroutine.running()
@@ -70,7 +70,7 @@ local function startscheduler()
         local step = queue:pop()
         if step then
             if not step.condition or step.condition() then
-                coroutine.resume(step.coroutine, step.args)
+                coroutine.resume(step.coroutine, unpack(step.args))
             else
                 queue:push(step, true)
             end
